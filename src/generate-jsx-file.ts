@@ -36,7 +36,8 @@ for (const attribute of htmlStandard.parseAttributes()) {
 }
 
 const lines = [
-  `declare namespace JSX {`,
+  `declare global {`,
+  `namespace JSX {`,
   `type Element = any;`,
   `type ElementChild = Element;`,
   ``,
@@ -67,6 +68,6 @@ for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
   lines.push(`}`);
 }
 
-lines.push(`}`, `}`);
+lines.push(`}`, `}`, `}`);
 
 writeFileSync(`./src/jsx.ts`, lines.join(`\n`), {encoding: `utf-8`});
