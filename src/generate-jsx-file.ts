@@ -38,31 +38,44 @@ for (const attribute of htmlStandard.parseAttributes()) {
 const lines = [
   `declare global {`,
   `namespace JSX {`,
-  `type Element = any;`,
-  `type ElementChild = Element;`,
+  `type Element = DocumentFragment | HTMLElement;`,
   ``,
   `interface ElementChildrenAttribute {`,
-  `children?: ElementChild | ElementChild[];`,
+  `readonly children?: {};`,
   `}`,
   ``,
-  `interface IntrinsicElement extends ElementChildrenAttribute {`,
+  `interface ElementKeyAttribute {`,
+  `readonly key?: ElementKey;`,
+  `}`,
+  ``,
+  `interface ElementKey {`,
+  `readonly string?: string;`,
+  `}`,
+  ``,
+  `interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
 ];
 
 for (const [attributeName, [valueType, description]] of Object.entries(
   baseIntrinsicElement,
 )) {
-  lines.push(`/** ${description} */`, `"${attributeName}"?: ${valueType};`);
+  lines.push(
+    `/** ${description} */`,
+    `readonly "${attributeName}"?: ${valueType};`,
+  );
 }
 
 lines.push(`}`, ``, `interface IntrinsicElements {`);
 
 for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
-  lines.push(`"${tagName}": IntrinsicElement & {`);
+  lines.push(`readonly "${tagName}": IntrinsicElement & {`);
 
   for (const [attributeName, [valueType, description]] of Object.entries(
     intrinsicElement,
   )) {
-    lines.push(`/** ${description} */`, `"${attributeName}"?: ${valueType};`);
+    lines.push(
+      `/** ${description} */`,
+      `readonly "${attributeName}"?: ${valueType};`,
+    );
   }
 
   lines.push(`}`);

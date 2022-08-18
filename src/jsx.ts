@@ -1,17 +1,26 @@
 declare global {
   namespace JSX {
-    type Element = any;
-    type ElementChild = Element;
+    type Element = DocumentFragment | HTMLElement;
 
     interface ElementChildrenAttribute {
-      children?: ElementChild | ElementChild[];
+      readonly children?: {};
     }
 
-    interface IntrinsicElement extends ElementChildrenAttribute {
+    interface ElementKeyAttribute {
+      readonly key?: ElementKey;
+    }
+
+    interface ElementKey {
+      readonly string?: string;
+    }
+
+    interface IntrinsicElement
+      extends ElementChildrenAttribute,
+        ElementKeyAttribute {
       /** Keyboard shortcut to activate or focus element */
-      accesskey?: string;
+      readonly accesskey?: string;
       /** Recommended autocapitalization behavior (for supported input methods) */
-      autocapitalize?:
+      readonly autocapitalize?:
         | 'on'
         | 'off'
         | 'none'
@@ -19,17 +28,17 @@ declare global {
         | 'words'
         | 'characters';
       /** Automatically focus the element when the page is loaded */
-      autofocus?: boolean;
+      readonly autofocus?: boolean;
       /** Classes to which the element belongs */
-      class?: string;
+      readonly class?: string;
       /** Whether the element is editable */
-      contenteditable?: 'true' | 'false';
+      readonly contenteditable?: 'true' | 'false';
       /** The text directionality of the element */
-      dir?: 'ltr' | 'rtl' | 'auto';
+      readonly dir?: 'ltr' | 'rtl' | 'auto';
       /** Whether the element is draggable */
-      draggable?: 'true' | 'false';
+      readonly draggable?: 'true' | 'false';
       /** Hint for selecting an enter key action */
-      enterkeyhint?:
+      readonly enterkeyhint?:
         | 'enter'
         | 'done'
         | 'go'
@@ -38,13 +47,13 @@ declare global {
         | 'search'
         | 'send';
       /** Whether the element is relevant */
-      hidden?: boolean;
+      readonly hidden?: boolean;
       /** The element's ID */
-      id?: string;
+      readonly id?: string;
       /** Whether the element is inert. */
-      inert?: boolean;
+      readonly inert?: boolean;
       /** Hint for selecting an input modality */
-      inputmode?:
+      readonly inputmode?:
         | 'none'
         | 'text'
         | 'tel'
@@ -54,685 +63,685 @@ declare global {
         | 'decimal'
         | 'search';
       /** Creates a customized built-in element */
-      is?: string;
+      readonly is?: string;
       /** Global identifier for a microdata item */
-      itemid?: string;
+      readonly itemid?: string;
       /** Property names of a microdata item */
-      itemprop?: string;
+      readonly itemprop?: string;
       /** Referenced elements */
-      itemref?: string;
+      readonly itemref?: string;
       /** Introduces a microdata item */
-      itemscope?: boolean;
+      readonly itemscope?: boolean;
       /** Item types of a microdata item */
-      itemtype?: string;
+      readonly itemtype?: string;
       /** Language of the element */
-      lang?: string;
+      readonly lang?: string;
       /** Cryptographic nonce used in Content Security Policy checks [CSP] */
-      nonce?: string;
+      readonly nonce?: string;
       /** Affects willValidate, plus any behavior added by the custom element author */
-      readonly?: boolean;
+      readonly readonly?: boolean;
       /** The element's desired slot */
-      slot?: string;
+      readonly slot?: string;
       /** Whether the element is to have its spelling and grammar checked */
-      spellcheck?: 'true' | 'false';
+      readonly spellcheck?: 'true' | 'false';
       /** Presentational and formatting instructions */
-      style?: string;
+      readonly style?: string;
       /** Whether the element is focusable and sequentially focusable, and the relative order of the element for the purposes of sequential focus navigation */
-      tabindex?: number;
+      readonly tabindex?: number;
       /** Advisory information for the element */
-      title?: string;
+      readonly title?: string;
       /** Whether the element is to be translated when the page is localized */
-      translate?: 'yes' | 'no';
+      readonly translate?: 'yes' | 'no';
     }
 
     interface IntrinsicElements {
-      a: IntrinsicElement & {
+      readonly a: IntrinsicElement & {
         /** Whether to download the resource instead of navigating to it, and its filename if so */
-        download?: string;
+        readonly download?: string;
         /** Address of the hyperlink */
-        href?: string;
+        readonly href?: string;
         /** Language of the linked resource */
-        hreflang?: string;
+        readonly hreflang?: string;
         /** URLs to ping */
-        ping?: string;
+        readonly ping?: string;
         /** Referrer policy for fetches initiated by the element */
-        referrerpolicy?: string;
+        readonly referrerpolicy?: string;
         /** Relationship between the location in the document containing the hyperlink and the destination resource */
-        rel?: string;
+        readonly rel?: string;
         /** Browsing context for hyperlink navigation */
-        target?: string;
+        readonly target?: string;
         /** Hint for the type of the referenced resource */
-        type?: string;
+        readonly type?: string;
       };
-      abbr: IntrinsicElement & {
+      readonly abbr: IntrinsicElement & {
         /** Full term or expansion of abbreviation */
-        title?: string;
+        readonly title?: string;
       };
-      address: IntrinsicElement & {};
-      area: IntrinsicElement & {
+      readonly address: IntrinsicElement & {};
+      readonly area: IntrinsicElement & {
         /** Replacement text for use when images are not available */
-        alt?: string;
+        readonly alt?: string;
         /** Coordinates for the shape to be created in an image map */
-        coords?: string;
+        readonly coords?: string;
         /** Whether to download the resource instead of navigating to it, and its filename if so */
-        download?: string;
+        readonly download?: string;
         /** Address of the hyperlink */
-        href?: string;
+        readonly href?: string;
         /** URLs to ping */
-        ping?: string;
+        readonly ping?: string;
         /** Referrer policy for fetches initiated by the element */
-        referrerpolicy?: string;
+        readonly referrerpolicy?: string;
         /** Relationship between the location in the document containing the hyperlink and the destination resource */
-        rel?: string;
+        readonly rel?: string;
         /** The kind of shape to be created in an image map */
-        shape?: 'circle' | 'default' | 'poly' | 'rect';
+        readonly shape?: 'circle' | 'default' | 'poly' | 'rect';
         /** Browsing context for hyperlink navigation */
-        target?: string;
+        readonly target?: string;
       };
-      article: IntrinsicElement & {};
-      aside: IntrinsicElement & {};
-      audio: IntrinsicElement & {
+      readonly article: IntrinsicElement & {};
+      readonly aside: IntrinsicElement & {};
+      readonly audio: IntrinsicElement & {
         /** Hint that the media resource can be started automatically when the page is loaded */
-        autoplay?: boolean;
+        readonly autoplay?: boolean;
         /** Show user agent controls */
-        controls?: boolean;
+        readonly controls?: boolean;
         /** How the element handles crossorigin requests */
-        crossorigin?: 'anonymous' | 'use-credentials';
+        readonly crossorigin?: 'anonymous' | 'use-credentials';
         /** Whether to loop the media resource */
-        loop?: boolean;
+        readonly loop?: boolean;
         /** Whether to mute the media resource by default */
-        muted?: boolean;
+        readonly muted?: boolean;
         /** Hints how much buffering the media resource will likely need */
-        preload?: 'none' | 'metadata' | 'auto';
+        readonly preload?: 'none' | 'metadata' | 'auto';
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
       };
-      b: IntrinsicElement & {};
-      base: IntrinsicElement & {
+      readonly b: IntrinsicElement & {};
+      readonly base: IntrinsicElement & {
         /** Document base URL */
-        href?: string;
+        readonly href?: string;
         /** Default browsing context for hyperlink navigation and form submission */
-        target?: string;
+        readonly target?: string;
       };
-      bdi: IntrinsicElement & {};
-      bdo: IntrinsicElement & {
+      readonly bdi: IntrinsicElement & {};
+      readonly bdo: IntrinsicElement & {
         /** The text directionality of the element */
-        dir?: 'ltr' | 'rtl';
+        readonly dir?: 'ltr' | 'rtl';
       };
-      blockquote: IntrinsicElement & {
+      readonly blockquote: IntrinsicElement & {
         /** Link to the source of the quotation or more information about the edit */
-        cite?: string;
+        readonly cite?: string;
       };
-      body: IntrinsicElement & {};
-      br: IntrinsicElement & {};
-      button: IntrinsicElement & {
+      readonly body: IntrinsicElement & {};
+      readonly br: IntrinsicElement & {};
+      readonly button: IntrinsicElement & {
         /** Whether the form control is disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** Associates the element with a form element */
-        form?: string;
+        readonly form?: string;
         /** URL to use for form submission */
-        formaction?: string;
+        readonly formaction?: string;
         /** Entry list encoding type to use for form submission */
-        formenctype?:
+        readonly formenctype?:
           | 'application/x-www-form-urlencoded'
           | 'multipart/form-data'
           | 'text/plain';
         /** Variant to use for form submission */
-        formmethod?: 'GET' | 'POST' | 'dialog';
+        readonly formmethod?: 'GET' | 'POST' | 'dialog';
         /** Bypass form control validation for form submission */
-        formnovalidate?: boolean;
+        readonly formnovalidate?: boolean;
         /** Browsing context for form submission */
-        formtarget?: string;
+        readonly formtarget?: string;
         /** Name of the element to use for form submission and in the form.elements API */
-        name?: string;
+        readonly name?: string;
         /** Type of button */
-        type?: 'submit' | 'reset' | 'button';
+        readonly type?: 'submit' | 'reset' | 'button';
         /** Value to be used for form submission */
-        value?: string;
+        readonly value?: string;
       };
-      canvas: IntrinsicElement & {
+      readonly canvas: IntrinsicElement & {
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      caption: IntrinsicElement & {};
-      cite: IntrinsicElement & {};
-      code: IntrinsicElement & {};
-      col: IntrinsicElement & {
+      readonly caption: IntrinsicElement & {};
+      readonly cite: IntrinsicElement & {};
+      readonly code: IntrinsicElement & {};
+      readonly col: IntrinsicElement & {
         /** Number of columns spanned by the element */
-        span?: number;
+        readonly span?: number;
       };
-      colgroup: IntrinsicElement & {
+      readonly colgroup: IntrinsicElement & {
         /** Number of columns spanned by the element */
-        span?: number;
+        readonly span?: number;
       };
-      data: IntrinsicElement & {
+      readonly data: IntrinsicElement & {
         /** Machine-readable value */
-        value?: string;
+        readonly value?: string;
       };
-      datalist: IntrinsicElement & {};
-      dd: IntrinsicElement & {};
-      del: IntrinsicElement & {
+      readonly datalist: IntrinsicElement & {};
+      readonly dd: IntrinsicElement & {};
+      readonly del: IntrinsicElement & {
         /** Link to the source of the quotation or more information about the edit */
-        cite?: string;
+        readonly cite?: string;
         /** Date and (optionally) time of the change */
-        datetime?: string;
+        readonly datetime?: string;
       };
-      details: IntrinsicElement & {
+      readonly details: IntrinsicElement & {
         /** Whether the details are visible */
-        open?: boolean;
+        readonly open?: boolean;
       };
-      dfn: IntrinsicElement & {
+      readonly dfn: IntrinsicElement & {
         /** Full term or expansion of abbreviation */
-        title?: string;
+        readonly title?: string;
       };
-      dialog: IntrinsicElement & {
+      readonly dialog: IntrinsicElement & {
         /** Whether the dialog box is showing */
-        open?: boolean;
+        readonly open?: boolean;
       };
-      div: IntrinsicElement & {};
-      dl: IntrinsicElement & {};
-      dt: IntrinsicElement & {};
-      em: IntrinsicElement & {};
-      embed: IntrinsicElement & {
+      readonly div: IntrinsicElement & {};
+      readonly dl: IntrinsicElement & {};
+      readonly dt: IntrinsicElement & {};
+      readonly em: IntrinsicElement & {};
+      readonly embed: IntrinsicElement & {
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** Type of embedded resource */
-        type?: string;
+        readonly type?: string;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      fieldset: IntrinsicElement & {
+      readonly fieldset: IntrinsicElement & {
         /** Whether the descendant form controls, except any inside legend, are disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** Associates the element with a form element */
-        form?: string;
+        readonly form?: string;
         /** Name of the element to use for form submission and in the form.elements API */
-        name?: string;
+        readonly name?: string;
       };
-      figcaption: IntrinsicElement & {};
-      figure: IntrinsicElement & {};
-      footer: IntrinsicElement & {};
-      form: IntrinsicElement & {
+      readonly figcaption: IntrinsicElement & {};
+      readonly figure: IntrinsicElement & {};
+      readonly footer: IntrinsicElement & {};
+      readonly form: IntrinsicElement & {
         /** Character encodings to use for form submission */
-        'accept-charset'?: string;
+        readonly 'accept-charset'?: string;
         /** URL to use for form submission */
-        'action'?: string;
+        readonly 'action'?: string;
         /** Default setting for autofill feature for controls in the form */
-        'autocomplete'?: 'on' | 'off';
+        readonly 'autocomplete'?: 'on' | 'off';
         /** Entry list encoding type to use for form submission */
-        'enctype'?:
+        readonly 'enctype'?:
           | 'application/x-www-form-urlencoded'
           | 'multipart/form-data'
           | 'text/plain';
         /** Variant to use for form submission */
-        'method'?: 'GET' | 'POST' | 'dialog';
+        readonly 'method'?: 'GET' | 'POST' | 'dialog';
         /** Name of form to use in the document.forms API */
-        'name'?: string;
+        readonly 'name'?: string;
         /** Bypass form control validation for form submission */
-        'novalidate'?: boolean;
+        readonly 'novalidate'?: boolean;
         /** Browsing context for form submission */
-        'target'?: string;
+        readonly 'target'?: string;
       };
-      h1: IntrinsicElement & {};
-      h2: IntrinsicElement & {};
-      h3: IntrinsicElement & {};
-      h4: IntrinsicElement & {};
-      h5: IntrinsicElement & {};
-      h6: IntrinsicElement & {};
-      head: IntrinsicElement & {};
-      header: IntrinsicElement & {};
-      hgroup: IntrinsicElement & {};
-      hr: IntrinsicElement & {};
-      html: IntrinsicElement & {};
-      i: IntrinsicElement & {};
-      iframe: IntrinsicElement & {
+      readonly h1: IntrinsicElement & {};
+      readonly h2: IntrinsicElement & {};
+      readonly h3: IntrinsicElement & {};
+      readonly h4: IntrinsicElement & {};
+      readonly h5: IntrinsicElement & {};
+      readonly h6: IntrinsicElement & {};
+      readonly head: IntrinsicElement & {};
+      readonly header: IntrinsicElement & {};
+      readonly hgroup: IntrinsicElement & {};
+      readonly hr: IntrinsicElement & {};
+      readonly html: IntrinsicElement & {};
+      readonly i: IntrinsicElement & {};
+      readonly iframe: IntrinsicElement & {
         /** Permissions policy to be applied to the iframe's contents */
-        allow?: string;
+        readonly allow?: string;
         /** Whether to allow the iframe's contents to use requestFullscreen() */
-        allowfullscreen?: boolean;
+        readonly allowfullscreen?: boolean;
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** Used when determining loading deferral */
-        loading?: 'lazy' | 'eager';
+        readonly loading?: 'lazy' | 'eager';
         /** Name of nested browsing context */
-        name?: string;
+        readonly name?: string;
         /** Referrer policy for fetches initiated by the element */
-        referrerpolicy?: string;
+        readonly referrerpolicy?: string;
         /** Security rules for nested content */
-        sandbox?: string;
+        readonly sandbox?: string;
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** A document to render in the iframe */
-        srcdoc?: string;
+        readonly srcdoc?: string;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      img: IntrinsicElement & {
+      readonly img: IntrinsicElement & {
         /** Replacement text for use when images are not available */
-        alt?: string;
+        readonly alt?: string;
         /** How the element handles crossorigin requests */
-        crossorigin?: 'anonymous' | 'use-credentials';
+        readonly crossorigin?: 'anonymous' | 'use-credentials';
         /** Decoding hint to use when processing this image for presentation */
-        decoding?: 'sync' | 'async' | 'auto';
+        readonly decoding?: 'sync' | 'async' | 'auto';
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** Whether the image is a server-side image map */
-        ismap?: boolean;
+        readonly ismap?: boolean;
         /** Used when determining loading deferral */
-        loading?: 'lazy' | 'eager';
+        readonly loading?: 'lazy' | 'eager';
         /** Referrer policy for fetches initiated by the element */
-        referrerpolicy?: string;
+        readonly referrerpolicy?: string;
         /** Image sizes for different page layouts */
-        sizes?: string;
+        readonly sizes?: string;
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** Images to use in different situations, e.g., high-resolution displays, small monitors, etc. */
-        srcset?: string;
+        readonly srcset?: string;
         /** Name of image map to use */
-        usemap?: string;
+        readonly usemap?: string;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      input: IntrinsicElement & {
+      readonly input: IntrinsicElement & {
         /** Hint for expected file type in file upload controls */
-        accept?: string;
+        readonly accept?: string;
         /** Replacement text for use when images are not available */
-        alt?: string;
+        readonly alt?: string;
         /** Hint for form autofill feature */
-        autocomplete?: string;
+        readonly autocomplete?: string;
         /** Whether the control is checked */
-        checked?: boolean;
+        readonly checked?: boolean;
         /** Name of form control to use for sending the element's directionality in form submission */
-        dirname?: string;
+        readonly dirname?: string;
         /** Whether the form control is disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** Associates the element with a form element */
-        form?: string;
+        readonly form?: string;
         /** URL to use for form submission */
-        formaction?: string;
+        readonly formaction?: string;
         /** Entry list encoding type to use for form submission */
-        formenctype?:
+        readonly formenctype?:
           | 'application/x-www-form-urlencoded'
           | 'multipart/form-data'
           | 'text/plain';
         /** Variant to use for form submission */
-        formmethod?: 'GET' | 'POST' | 'dialog';
+        readonly formmethod?: 'GET' | 'POST' | 'dialog';
         /** Bypass form control validation for form submission */
-        formnovalidate?: boolean;
+        readonly formnovalidate?: boolean;
         /** Browsing context for form submission */
-        formtarget?: string;
+        readonly formtarget?: string;
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** List of autocomplete options */
-        list?: string;
+        readonly list?: string;
         /** Maximum value */
-        max?: string;
+        readonly max?: string;
         /** Maximum length of value */
-        maxlength?: number;
+        readonly maxlength?: number;
         /** Minimum value */
-        min?: string;
+        readonly min?: string;
         /** Minimum length of value */
-        minlength?: number;
+        readonly minlength?: number;
         /** Whether to allow multiple values */
-        multiple?: boolean;
+        readonly multiple?: boolean;
         /** Name of the element to use for form submission and in the form.elements API */
-        name?: string;
+        readonly name?: string;
         /** Pattern to be matched by the form control's value */
-        pattern?: string;
+        readonly pattern?: string;
         /** User-visible label to be placed within the form control */
-        placeholder?: string;
+        readonly placeholder?: string;
         /** Whether to allow the value to be edited by the user */
-        readonly?: boolean;
+        readonly readonly?: boolean;
         /** Whether the control is required for form submission */
-        required?: boolean;
+        readonly required?: boolean;
         /** Size of the control */
-        size?: number;
+        readonly size?: number;
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** Granularity to be matched by the form control's value */
-        step?: number | 'any';
+        readonly step?: number | 'any';
         /** Description of pattern (when used with pattern attribute) */
-        title?: string;
+        readonly title?: string;
         /** Type of form control */
-        type?: string;
+        readonly type?: string;
         /** Value of the form control */
-        value?: string;
+        readonly value?: string;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      ins: IntrinsicElement & {
+      readonly ins: IntrinsicElement & {
         /** Link to the source of the quotation or more information about the edit */
-        cite?: string;
+        readonly cite?: string;
         /** Date and (optionally) time of the change */
-        datetime?: string;
+        readonly datetime?: string;
       };
-      kbd: IntrinsicElement & {};
-      label: IntrinsicElement & {
+      readonly kbd: IntrinsicElement & {};
+      readonly label: IntrinsicElement & {
         /** Associate the label with form control */
-        for?: string;
+        readonly for?: string;
       };
-      legend: IntrinsicElement & {};
-      li: IntrinsicElement & {
+      readonly legend: IntrinsicElement & {};
+      readonly li: IntrinsicElement & {
         /** Ordinal value of the list item */
-        value?: number;
+        readonly value?: number;
       };
-      link: IntrinsicElement & {
+      readonly link: IntrinsicElement & {
         /** Potential destination for a preload request (for rel="preload" and rel="modulepreload") */
-        as?: string;
+        readonly as?: string;
         /** Whether the element is potentially render-blocking */
-        blocking?: string;
+        readonly blocking?: string;
         /** Color to use when customizing a site's icon (for rel="mask-icon") */
-        color?: string;
+        readonly color?: string;
         /** How the element handles crossorigin requests */
-        crossorigin?: 'anonymous' | 'use-credentials';
+        readonly crossorigin?: 'anonymous' | 'use-credentials';
         /** Whether the link is disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** Address of the hyperlink */
-        href?: string;
+        readonly href?: string;
         /** Language of the linked resource */
-        hreflang?: string;
+        readonly hreflang?: string;
         /** Image sizes for different page layouts (for rel="preload") */
-        imagesizes?: string;
+        readonly imagesizes?: string;
         /** Images to use in different situations, e.g., high-resolution displays, small monitors, etc. (for rel="preload") */
-        imagesrcset?: string;
+        readonly imagesrcset?: string;
         /** Integrity metadata used in Subresource Integrity checks [SRI] */
-        integrity?: string;
+        readonly integrity?: string;
         /** Applicable media */
-        media?: string;
+        readonly media?: string;
         /** Referrer policy for fetches initiated by the element */
-        referrerpolicy?: string;
+        readonly referrerpolicy?: string;
         /** Relationship between the document containing the hyperlink and the destination resource */
-        rel?: string;
+        readonly rel?: string;
         /** Sizes of the icons (for rel="icon") */
-        sizes?: string;
+        readonly sizes?: string;
         /** CSS style sheet set name */
-        title?: string;
+        readonly title?: string;
         /** Hint for the type of the referenced resource */
-        type?: string;
+        readonly type?: string;
       };
-      main: IntrinsicElement & {};
-      map: IntrinsicElement & {
+      readonly main: IntrinsicElement & {};
+      readonly map: IntrinsicElement & {
         /** Name of image map to reference from the usemap attribute */
-        name?: string;
+        readonly name?: string;
       };
-      mark: IntrinsicElement & {};
-      menu: IntrinsicElement & {};
-      meta: IntrinsicElement & {
+      readonly mark: IntrinsicElement & {};
+      readonly menu: IntrinsicElement & {};
+      readonly meta: IntrinsicElement & {
         /** Character encoding declaration */
-        'charset'?: 'utf-8';
+        readonly 'charset'?: 'utf-8';
         /** Value of the element */
-        'content'?: string;
+        readonly 'content'?: string;
         /** Pragma directive */
-        'http-equiv'?:
+        readonly 'http-equiv'?:
           | 'content-type'
           | 'default-style'
           | 'refresh'
           | 'x-ua-compatible'
           | 'content-security-policy';
         /** Applicable media */
-        'media'?: string;
+        readonly 'media'?: string;
         /** Metadata name */
-        'name'?: string;
+        readonly 'name'?: string;
       };
-      meter: IntrinsicElement & {
+      readonly meter: IntrinsicElement & {
         /** Low limit of high range */
-        high?: number;
+        readonly high?: number;
         /** High limit of low range */
-        low?: number;
+        readonly low?: number;
         /** Upper bound of range */
-        max?: number;
+        readonly max?: number;
         /** Lower bound of range */
-        min?: number;
+        readonly min?: number;
         /** Optimum value in gauge */
-        optimum?: number;
+        readonly optimum?: number;
         /** Current value of the element */
-        value?: number;
+        readonly value?: number;
       };
-      nav: IntrinsicElement & {};
-      noscript: IntrinsicElement & {};
-      object: IntrinsicElement & {
+      readonly nav: IntrinsicElement & {};
+      readonly noscript: IntrinsicElement & {};
+      readonly object: IntrinsicElement & {
         /** Address of the resource */
-        data?: string;
+        readonly data?: string;
         /** Associates the element with a form element */
-        form?: string;
+        readonly form?: string;
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** Name of nested browsing context */
-        name?: string;
+        readonly name?: string;
         /** Type of embedded resource */
-        type?: string;
+        readonly type?: string;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      ol: IntrinsicElement & {
+      readonly ol: IntrinsicElement & {
         /** Number the list backwards */
-        reversed?: boolean;
+        readonly reversed?: boolean;
         /** Starting value of the list */
-        start?: number;
+        readonly start?: number;
         /** Kind of list marker */
-        type?: '1' | 'a' | 'A' | 'i' | 'I';
+        readonly type?: '1' | 'a' | 'A' | 'i' | 'I';
       };
-      optgroup: IntrinsicElement & {
+      readonly optgroup: IntrinsicElement & {
         /** Whether the form control is disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** User-visible label */
-        label?: string;
+        readonly label?: string;
       };
-      option: IntrinsicElement & {
+      readonly option: IntrinsicElement & {
         /** Whether the form control is disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** User-visible label */
-        label?: string;
+        readonly label?: string;
         /** Whether the option is selected by default */
-        selected?: boolean;
+        readonly selected?: boolean;
         /** Value to be used for form submission */
-        value?: string;
+        readonly value?: string;
       };
-      output: IntrinsicElement & {
+      readonly output: IntrinsicElement & {
         /** Specifies controls from which the output was calculated */
-        for?: string;
+        readonly for?: string;
         /** Associates the element with a form element */
-        form?: string;
+        readonly form?: string;
         /** Name of the element to use for form submission and in the form.elements API */
-        name?: string;
+        readonly name?: string;
       };
-      p: IntrinsicElement & {};
-      picture: IntrinsicElement & {};
-      pre: IntrinsicElement & {};
-      progress: IntrinsicElement & {
+      readonly p: IntrinsicElement & {};
+      readonly picture: IntrinsicElement & {};
+      readonly pre: IntrinsicElement & {};
+      readonly progress: IntrinsicElement & {
         /** Upper bound of range */
-        max?: number;
+        readonly max?: number;
         /** Current value of the element */
-        value?: number;
+        readonly value?: number;
       };
-      q: IntrinsicElement & {
+      readonly q: IntrinsicElement & {
         /** Link to the source of the quotation or more information about the edit */
-        cite?: string;
+        readonly cite?: string;
       };
-      rp: IntrinsicElement & {};
-      rt: IntrinsicElement & {};
-      ruby: IntrinsicElement & {};
-      s: IntrinsicElement & {};
-      samp: IntrinsicElement & {};
-      script: IntrinsicElement & {
+      readonly rp: IntrinsicElement & {};
+      readonly rt: IntrinsicElement & {};
+      readonly ruby: IntrinsicElement & {};
+      readonly s: IntrinsicElement & {};
+      readonly samp: IntrinsicElement & {};
+      readonly script: IntrinsicElement & {
         /** Execute script when available, without blocking while fetching */
-        async?: boolean;
+        readonly async?: boolean;
         /** Whether the element is potentially render-blocking */
-        blocking?: string;
+        readonly blocking?: string;
         /** How the element handles crossorigin requests */
-        crossorigin?: 'anonymous' | 'use-credentials';
+        readonly crossorigin?: 'anonymous' | 'use-credentials';
         /** Defer script execution */
-        defer?: boolean;
+        readonly defer?: boolean;
         /** Integrity metadata used in Subresource Integrity checks [SRI] */
-        integrity?: string;
+        readonly integrity?: string;
         /** Prevents execution in user agents that support module scripts */
-        nomodule?: boolean;
+        readonly nomodule?: boolean;
         /** Referrer policy for fetches initiated by the element */
-        referrerpolicy?: string;
+        readonly referrerpolicy?: string;
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** Type of script */
-        type?: string;
+        readonly type?: string;
       };
-      section: IntrinsicElement & {};
-      select: IntrinsicElement & {
+      readonly section: IntrinsicElement & {};
+      readonly select: IntrinsicElement & {
         /** Hint for form autofill feature */
-        autocomplete?: string;
+        readonly autocomplete?: string;
         /** Whether the form control is disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** Associates the element with a form element */
-        form?: string;
+        readonly form?: string;
         /** Whether to allow multiple values */
-        multiple?: boolean;
+        readonly multiple?: boolean;
         /** Name of the element to use for form submission and in the form.elements API */
-        name?: string;
+        readonly name?: string;
         /** Whether the control is required for form submission */
-        required?: boolean;
+        readonly required?: boolean;
         /** Size of the control */
-        size?: number;
+        readonly size?: number;
       };
-      slot: IntrinsicElement & {
+      readonly slot: IntrinsicElement & {
         /** Name of shadow tree slot */
-        name?: string;
+        readonly name?: string;
       };
-      small: IntrinsicElement & {};
-      source: IntrinsicElement & {
+      readonly small: IntrinsicElement & {};
+      readonly source: IntrinsicElement & {
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** Applicable media */
-        media?: string;
+        readonly media?: string;
         /** Image sizes for different page layouts */
-        sizes?: string;
+        readonly sizes?: string;
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** Images to use in different situations, e.g., high-resolution displays, small monitors, etc. */
-        srcset?: string;
+        readonly srcset?: string;
         /** Type of embedded resource */
-        type?: string;
+        readonly type?: string;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      span: IntrinsicElement & {};
-      strong: IntrinsicElement & {};
-      style: IntrinsicElement & {
+      readonly span: IntrinsicElement & {};
+      readonly strong: IntrinsicElement & {};
+      readonly style: IntrinsicElement & {
         /** Whether the element is potentially render-blocking */
-        blocking?: string;
+        readonly blocking?: string;
         /** Applicable media */
-        media?: string;
+        readonly media?: string;
         /** CSS style sheet set name */
-        title?: string;
+        readonly title?: string;
       };
-      sub: IntrinsicElement & {};
-      summary: IntrinsicElement & {};
-      sup: IntrinsicElement & {};
-      table: IntrinsicElement & {};
-      tbody: IntrinsicElement & {};
-      td: IntrinsicElement & {
+      readonly sub: IntrinsicElement & {};
+      readonly summary: IntrinsicElement & {};
+      readonly sup: IntrinsicElement & {};
+      readonly table: IntrinsicElement & {};
+      readonly tbody: IntrinsicElement & {};
+      readonly td: IntrinsicElement & {
         /** Number of columns that the cell is to span */
-        colspan?: number;
+        readonly colspan?: number;
         /** The header cells for this cell */
-        headers?: string;
+        readonly headers?: string;
         /** Number of rows that the cell is to span */
-        rowspan?: number;
+        readonly rowspan?: number;
       };
-      template: IntrinsicElement & {};
-      textarea: IntrinsicElement & {
+      readonly template: IntrinsicElement & {};
+      readonly textarea: IntrinsicElement & {
         /** Hint for form autofill feature */
-        autocomplete?: string;
+        readonly autocomplete?: string;
         /** Maximum number of characters per line */
-        cols?: number;
+        readonly cols?: number;
         /** Name of form control to use for sending the element's directionality in form submission */
-        dirname?: string;
+        readonly dirname?: string;
         /** Whether the form control is disabled */
-        disabled?: boolean;
+        readonly disabled?: boolean;
         /** Associates the element with a form element */
-        form?: string;
+        readonly form?: string;
         /** Maximum length of value */
-        maxlength?: number;
+        readonly maxlength?: number;
         /** Minimum length of value */
-        minlength?: number;
+        readonly minlength?: number;
         /** Name of the element to use for form submission and in the form.elements API */
-        name?: string;
+        readonly name?: string;
         /** User-visible label to be placed within the form control */
-        placeholder?: string;
+        readonly placeholder?: string;
         /** Whether to allow the value to be edited by the user */
-        readonly?: boolean;
+        readonly readonly?: boolean;
         /** Whether the control is required for form submission */
-        required?: boolean;
+        readonly required?: boolean;
         /** Number of lines to show */
-        rows?: number;
+        readonly rows?: number;
         /** How the value of the form control is to be wrapped for form submission */
-        wrap?: 'soft' | 'hard';
+        readonly wrap?: 'soft' | 'hard';
       };
-      tfoot: IntrinsicElement & {};
-      th: IntrinsicElement & {
+      readonly tfoot: IntrinsicElement & {};
+      readonly th: IntrinsicElement & {
         /** Alternative label to use for the header cell when referencing the cell in other contexts */
-        abbr?: string;
+        readonly abbr?: string;
         /** Number of columns that the cell is to span */
-        colspan?: number;
+        readonly colspan?: number;
         /** The header cells for this cell */
-        headers?: string;
+        readonly headers?: string;
         /** Number of rows that the cell is to span */
-        rowspan?: number;
+        readonly rowspan?: number;
         /** Specifies which cells the header cell applies to */
-        scope?: 'row' | 'col' | 'rowgroup' | 'colgroup';
+        readonly scope?: 'row' | 'col' | 'rowgroup' | 'colgroup';
       };
-      thead: IntrinsicElement & {};
-      time: IntrinsicElement & {
+      readonly thead: IntrinsicElement & {};
+      readonly time: IntrinsicElement & {
         /** Machine-readable value */
-        datetime?: string | number;
+        readonly datetime?: string | number;
       };
-      title: IntrinsicElement & {};
-      tr: IntrinsicElement & {};
-      track: IntrinsicElement & {
+      readonly title: IntrinsicElement & {};
+      readonly tr: IntrinsicElement & {};
+      readonly track: IntrinsicElement & {
         /** Enable the track if no other text track is more suitable */
-        default?: boolean;
+        readonly default?: boolean;
         /** The type of text track */
-        kind?:
+        readonly kind?:
           | 'subtitles'
           | 'captions'
           | 'descriptions'
           | 'chapters'
           | 'metadata';
         /** User-visible label */
-        label?: string;
+        readonly label?: string;
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** Language of the text track */
-        srclang?: string;
+        readonly srclang?: string;
       };
-      u: IntrinsicElement & {};
-      ul: IntrinsicElement & {};
-      var: IntrinsicElement & {};
-      video: IntrinsicElement & {
+      readonly u: IntrinsicElement & {};
+      readonly ul: IntrinsicElement & {};
+      readonly var: IntrinsicElement & {};
+      readonly video: IntrinsicElement & {
         /** Hint that the media resource can be started automatically when the page is loaded */
-        autoplay?: boolean;
+        readonly autoplay?: boolean;
         /** Show user agent controls */
-        controls?: boolean;
+        readonly controls?: boolean;
         /** How the element handles crossorigin requests */
-        crossorigin?: 'anonymous' | 'use-credentials';
+        readonly crossorigin?: 'anonymous' | 'use-credentials';
         /** Vertical dimension */
-        height?: number;
+        readonly height?: number;
         /** Whether to loop the media resource */
-        loop?: boolean;
+        readonly loop?: boolean;
         /** Whether to mute the media resource by default */
-        muted?: boolean;
+        readonly muted?: boolean;
         /** Encourage the user agent to display video content within the element's playback area */
-        playsinline?: boolean;
+        readonly playsinline?: boolean;
         /** Poster frame to show prior to video playback */
-        poster?: string;
+        readonly poster?: string;
         /** Hints how much buffering the media resource will likely need */
-        preload?: 'none' | 'metadata' | 'auto';
+        readonly preload?: 'none' | 'metadata' | 'auto';
         /** Address of the resource */
-        src?: string;
+        readonly src?: string;
         /** Horizontal dimension */
-        width?: number;
+        readonly width?: number;
       };
-      wbr: IntrinsicElement & {};
+      readonly wbr: IntrinsicElement & {};
     }
   }
 }
