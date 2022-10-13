@@ -36,23 +36,18 @@ for (const attribute of htmlStandard.parseAttributes()) {
 }
 
 const lines = [
-  `declare global {`,
-  `namespace JSX {`,
-  `type Element = DocumentFragment | HTMLElement;`,
+  `export namespace JSX {`,
+  `export type Element = DocumentFragment | HTMLElement;`,
   ``,
-  `interface ElementChildrenAttribute {`,
-  `readonly children?: {};`,
+  `export interface ElementChildrenAttribute {`,
+  `readonly children?: unknown;`,
   `}`,
   ``,
-  `interface ElementKeyAttribute {`,
-  `readonly key?: ElementKey;`,
+  `export interface ElementKeyAttribute {`,
+  `readonly key?: object;`,
   `}`,
   ``,
-  `interface ElementKey {`,
-  `readonly string?: string;`,
-  `}`,
-  ``,
-  `interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
+  `export interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
 ];
 
 for (const [attributeName, [valueType, description]] of Object.entries(
@@ -64,7 +59,7 @@ for (const [attributeName, [valueType, description]] of Object.entries(
   );
 }
 
-lines.push(`}`, ``, `interface IntrinsicElements {`);
+lines.push(`}`, ``, `export interface IntrinsicElements {`);
 
 for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
   lines.push(`readonly "${tagName}": IntrinsicElement & {`);
@@ -81,6 +76,6 @@ for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
   lines.push(`}`);
 }
 
-lines.push(`}`, `}`, `}`);
+lines.push(`}`, `}`);
 
 writeFileSync(`./src/jsx.ts`, lines.join(`\n`), {encoding: `utf-8`});
