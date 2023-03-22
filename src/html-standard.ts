@@ -85,7 +85,7 @@ export class HtmlStandard {
             tagName !== `form-associated custom elements`,
         )
         .map((tagName) =>
-          tagName.startsWith(`source`) ? `source` : tagName,
+          tagName.startsWith(`source`) ? `source` : tagName.trim(),
         ) ?? []
     );
   }

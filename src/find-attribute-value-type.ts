@@ -1,5 +1,7 @@
 const attributeValueTypes: Record<string, string> = {
+  '"auto"; "manual";': `"auto" | "manual"`,
   '"module"; a valid MIME type string that is not a JavaScript MIME type essence match': `string`,
+  '"until-found"; "hidden"; the empty string': `boolean | "until-found"`,
   'ASCII case-insensitive match for "UTF-8"': `string`,
   'Autofill field name and related tokens*': `string`,
   'Boolean attribute': `boolean`,
@@ -7,6 +9,7 @@ const attributeValueTypes: Record<string, string> = {
   'CSS declarations*': `string`,
   'Comma-separated list of image candidate strings': `string`,
   'ID*': `string`,
+  'ID of the element to toggle, show or, hide': `string`,
   'Ordered set of unique space-separated tokens, none of which are identical to another, each consisting of one code point in length': `string`,
   'Potential destination, for rel="preload"; script-like destination, for rel="modulepreload"': `string`,
   'Referrer policy': `string`,
@@ -39,6 +42,7 @@ const attributeValueTypes: Record<string, string> = {
   'Valid list of floating-point numbers*': `string`,
   'Valid media query list': `string`,
   'Valid month string, valid date string, valid yearless date string, valid time string, valid local date and time string, valid time-zone offset string, valid global date and time string, valid week string, valid non-negative integer, or valid duration string': `string | number`,
+  'Valid navigable target name or keyword': `string`,
   'Valid non-empty URL potentially surrounded by spaces': `string`,
   'Valid non-negative integer': `number`,
   'Valid non-negative integer greater than zero': `number`,
