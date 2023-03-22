@@ -37,29 +37,18 @@ for (const attribute of htmlStandard.parseAttributes()) {
 
 const lines = [
   `export namespace JSX {`,
-  `export type Element = DocumentFragment | HTMLElement;`,
+  `export type Element = unknown;`,
   ``,
   `export interface ElementChildrenAttribute {`,
   `readonly children?: unknown;`,
   `}`,
   ``,
   `export interface ElementKeyAttribute {`,
-  `readonly key?: object;`,
+  `readonly key?: string;`,
   `}`,
   ``,
-  `export interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
+  `export interface IntrinsicElements {`,
 ];
-
-for (const [attributeName, [valueType, description]] of Object.entries(
-  baseIntrinsicElement,
-)) {
-  lines.push(
-    `/** ${description} */`,
-    `readonly "${attributeName}"?: ${valueType};`,
-  );
-}
-
-lines.push(`}`, ``, `export interface IntrinsicElements {`);
 
 for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
   lines.push(`readonly "${tagName}": IntrinsicElement & {`);
@@ -74,6 +63,21 @@ for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
   }
 
   lines.push(`}`);
+}
+
+lines.push(
+  `}`,
+  ``,
+  `export interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
+);
+
+for (const [attributeName, [valueType, description]] of Object.entries(
+  baseIntrinsicElement,
+)) {
+  lines.push(
+    `/** ${description} */`,
+    `readonly "${attributeName}"?: ${valueType};`,
+  );
 }
 
 lines.push(`}`, `}`);
