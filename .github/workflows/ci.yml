@@ -1,18 +1,13 @@
-name: CI
 on:
-  - push
-  - pull_request
+  pull_request: {}
+  push: {}
 jobs:
-  ci:
+  CI:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-      - name: Run CI checks
-        run: npm run ci
+      - uses: bahmutov/npm-install@v1
+      - run: npm run ci
