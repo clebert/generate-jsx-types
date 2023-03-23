@@ -2,6 +2,7 @@
 /LICENSE*
 /.eslintrc.json
 /package-lock.json
+/.github/workflows/ci.yml
 /tsconfig.base.json
 /tsconfig.json
 /lib

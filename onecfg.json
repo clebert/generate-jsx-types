@@ -4,6 +4,7 @@
     "https://raw.githubusercontent.com/clebert/onecfg-lib/main/lib/onecfg-eslint.json",
     "https://raw.githubusercontent.com/clebert/onecfg-lib/main/lib/onecfg-git.json",
     "https://raw.githubusercontent.com/clebert/onecfg-lib/main/lib/onecfg-node.json",
+    "https://raw.githubusercontent.com/clebert/onecfg-lib/main/lib/onecfg-node-github.json",
     "https://raw.githubusercontent.com/clebert/onecfg-lib/main/lib/onecfg-prettier.json",
     "https://raw.githubusercontent.com/clebert/onecfg-lib/main/lib/onecfg-typescript.json",
     "https://raw.githubusercontent.com/clebert/onecfg-lib/main/lib/onecfg-typescript-emit.json",
