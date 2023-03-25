@@ -9,6 +9,88 @@ export namespace JSX {
     readonly key?: string;
   }
 
+  export interface IntrinsicElement
+    extends ElementChildrenAttribute,
+      ElementKeyAttribute {
+    /** Keyboard shortcut to activate or focus element */
+    readonly accesskey?: string;
+    /** Recommended autocapitalization behavior (for supported input methods) */
+    readonly autocapitalize?:
+      | 'on'
+      | 'off'
+      | 'none'
+      | 'sentences'
+      | 'words'
+      | 'characters';
+    /** Automatically focus the element when the page is loaded */
+    readonly autofocus?: boolean;
+    /** Classes to which the element belongs */
+    readonly class?: string;
+    /** Whether the element is editable */
+    readonly contenteditable?: 'true' | 'plaintext-only' | 'false';
+    /** The text directionality of the element */
+    readonly dir?: 'ltr' | 'rtl' | 'auto';
+    /** Whether the element is draggable */
+    readonly draggable?: 'true' | 'false';
+    /** Hint for selecting an enter key action */
+    readonly enterkeyhint?:
+      | 'enter'
+      | 'done'
+      | 'go'
+      | 'next'
+      | 'previous'
+      | 'search'
+      | 'send';
+    /** Whether the element is relevant */
+    readonly hidden?: boolean | 'until-found';
+    /** The element's ID */
+    readonly id?: string;
+    /** Whether the element is inert. */
+    readonly inert?: boolean;
+    /** Hint for selecting an input modality */
+    readonly inputmode?:
+      | 'none'
+      | 'text'
+      | 'tel'
+      | 'email'
+      | 'url'
+      | 'numeric'
+      | 'decimal'
+      | 'search';
+    /** Creates a customized built-in element */
+    readonly is?: string;
+    /** Global identifier for a microdata item */
+    readonly itemid?: string;
+    /** Property names of a microdata item */
+    readonly itemprop?: string;
+    /** Referenced elements */
+    readonly itemref?: string;
+    /** Introduces a microdata item */
+    readonly itemscope?: boolean;
+    /** Item types of a microdata item */
+    readonly itemtype?: string;
+    /** Language of the element */
+    readonly lang?: string;
+    /** Cryptographic nonce used in Content Security Policy checks [CSP] */
+    readonly nonce?: string;
+    /** Makes the element a popover element */
+    readonly popover?: 'auto' | 'manual';
+    /** Affects willValidate, plus any behavior added by the custom element author */
+    readonly readonly?: boolean;
+    /** The element's desired slot */
+    readonly slot?: string;
+    /** Whether the element is to have its spelling and grammar checked */
+    readonly spellcheck?: 'true' | 'false';
+    /** Presentational and formatting instructions */
+    readonly style?: string;
+    /** Whether the element is focusable and sequentially focusable, and the relative order of the element for the purposes of sequential focus navigation */
+    readonly tabindex?: number;
+    /** Advisory information for the element */
+    readonly title?: string;
+    /** Whether the element is to be translated when the page is localized */
+    readonly translate?: 'yes' | 'no';
+  }
+
   export interface IntrinsicElements {
     readonly a: IntrinsicElement & {
       /** Whether to download the resource instead of navigating to it, and its filename if so */
@@ -494,6 +576,7 @@ export namespace JSX {
     readonly ruby: IntrinsicElement & {};
     readonly s: IntrinsicElement & {};
     readonly samp: IntrinsicElement & {};
+    readonly search: IntrinsicElement & {};
     readonly script: IntrinsicElement & {
       /** Execute script when available, without blocking while fetching */
       readonly async?: boolean;
@@ -671,87 +754,5 @@ export namespace JSX {
       readonly width?: number;
     };
     readonly wbr: IntrinsicElement & {};
-  }
-
-  export interface IntrinsicElement
-    extends ElementChildrenAttribute,
-      ElementKeyAttribute {
-    /** Keyboard shortcut to activate or focus element */
-    readonly accesskey?: string;
-    /** Recommended autocapitalization behavior (for supported input methods) */
-    readonly autocapitalize?:
-      | 'on'
-      | 'off'
-      | 'none'
-      | 'sentences'
-      | 'words'
-      | 'characters';
-    /** Automatically focus the element when the page is loaded */
-    readonly autofocus?: boolean;
-    /** Classes to which the element belongs */
-    readonly class?: string;
-    /** Whether the element is editable */
-    readonly contenteditable?: 'true' | 'plaintext-only' | 'false';
-    /** The text directionality of the element */
-    readonly dir?: 'ltr' | 'rtl' | 'auto';
-    /** Whether the element is draggable */
-    readonly draggable?: 'true' | 'false';
-    /** Hint for selecting an enter key action */
-    readonly enterkeyhint?:
-      | 'enter'
-      | 'done'
-      | 'go'
-      | 'next'
-      | 'previous'
-      | 'search'
-      | 'send';
-    /** Whether the element is relevant */
-    readonly hidden?: boolean | 'until-found';
-    /** The element's ID */
-    readonly id?: string;
-    /** Whether the element is inert. */
-    readonly inert?: boolean;
-    /** Hint for selecting an input modality */
-    readonly inputmode?:
-      | 'none'
-      | 'text'
-      | 'tel'
-      | 'email'
-      | 'url'
-      | 'numeric'
-      | 'decimal'
-      | 'search';
-    /** Creates a customized built-in element */
-    readonly is?: string;
-    /** Global identifier for a microdata item */
-    readonly itemid?: string;
-    /** Property names of a microdata item */
-    readonly itemprop?: string;
-    /** Referenced elements */
-    readonly itemref?: string;
-    /** Introduces a microdata item */
-    readonly itemscope?: boolean;
-    /** Item types of a microdata item */
-    readonly itemtype?: string;
-    /** Language of the element */
-    readonly lang?: string;
-    /** Cryptographic nonce used in Content Security Policy checks [CSP] */
-    readonly nonce?: string;
-    /** Makes the element a popover element */
-    readonly popover?: 'auto' | 'manual';
-    /** Affects willValidate, plus any behavior added by the custom element author */
-    readonly readonly?: boolean;
-    /** The element's desired slot */
-    readonly slot?: string;
-    /** Whether the element is to have its spelling and grammar checked */
-    readonly spellcheck?: 'true' | 'false';
-    /** Presentational and formatting instructions */
-    readonly style?: string;
-    /** Whether the element is focusable and sequentially focusable, and the relative order of the element for the purposes of sequential focus navigation */
-    readonly tabindex?: number;
-    /** Advisory information for the element */
-    readonly title?: string;
-    /** Whether the element is to be translated when the page is localized */
-    readonly translate?: 'yes' | 'no';
   }
 }

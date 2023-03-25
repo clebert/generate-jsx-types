@@ -47,8 +47,19 @@ const lines = [
   `readonly key?: string;`,
   `}`,
   ``,
-  `export interface IntrinsicElements {`,
+  `export interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
 ];
+
+for (const [attributeName, [valueType, description]] of Object.entries(
+  baseIntrinsicElement,
+)) {
+  lines.push(
+    `/** ${description} */`,
+    `readonly "${attributeName}"?: ${valueType};`,
+  );
+}
+
+lines.push(`}`, ``, `export interface IntrinsicElements {`);
 
 for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
   lines.push(`readonly "${tagName}": IntrinsicElement & {`);
@@ -63,21 +74,6 @@ for (const [tagName, intrinsicElement] of Object.entries(intrinsicElements)) {
   }
 
   lines.push(`}`);
-}
-
-lines.push(
-  `}`,
-  ``,
-  `export interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
-);
-
-for (const [attributeName, [valueType, description]] of Object.entries(
-  baseIntrinsicElement,
-)) {
-  lines.push(
-    `/** ${description} */`,
-    `readonly "${attributeName}"?: ${valueType};`,
-  );
 }
 
 lines.push(`}`, `}`);
