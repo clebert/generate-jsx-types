@@ -1,6 +1,6 @@
-import {writeFileSync} from 'node:fs';
 import {findAttributeValueType} from './find-attribute-value-type.js';
 import {HtmlStandard} from './html-standard.js';
+import {writeFileSync} from 'node:fs';
 
 const htmlStandard = await HtmlStandard.fetch();
 
