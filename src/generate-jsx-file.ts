@@ -37,14 +37,14 @@ for (const attribute of htmlStandard.parseAttributes()) {
 
 const lines = [
   `export namespace JSX {`,
-  `export type Element = DocumentFragment | HTMLElement;`,
+  `export type Element = unknown;`,
   ``,
   `export interface ElementChildrenAttribute {`,
   `readonly children?: unknown;`,
   `}`,
   ``,
   `export interface ElementKeyAttribute {`,
-  `readonly key?: object;`,
+  `readonly key?: string;`,
   `}`,
   ``,
   `export interface IntrinsicElement extends ElementChildrenAttribute, ElementKeyAttribute {`,
